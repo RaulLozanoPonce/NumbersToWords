@@ -59,9 +59,8 @@ public class NumbersToWords {
             if (hundreds(number) != 0) {
                 ret = ONES.get(hundreds(number)) + " hundred " + ret;
             }
-
-            /*if (ret.charAt(0) == ' ') ret = ret.substring(1, ret.length());
-            if (ret.charAt(ret.length() - 1) == ' ') ret = ret.substring(0, ret.length() - 1);*/
+            if(ret.charAt(0) == ' ' || ret.charAt(0) == '-') ret = ret.substring(1, ret.length());
+            if(ret.charAt(ret.length() - 1) == ' ' || ret.charAt(ret.length() - 1) == '-') ret = ret.substring(0, ret.length() - 1);
         }
         return ret;
     }
