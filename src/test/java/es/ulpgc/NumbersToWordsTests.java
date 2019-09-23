@@ -15,6 +15,7 @@ public class NumbersToWordsTests {
     private int number;
     private String numberWord;
     private Map<Integer, String> ONES;
+    private Map<Integer, String> TENS;
 
     public NumbersToWordsTests(int number, String numberWord) {
         this.number = number;
@@ -30,6 +31,15 @@ public class NumbersToWordsTests {
         ONES.put(7, "seven");
         ONES.put(8, "eight");
         ONES.put(9, "nine");
+        TENS = new HashMap<Integer, String>();
+        TENS.put(2, "twenty");
+        TENS.put(3, "thirty");
+        TENS.put(4, "forty");
+        TENS.put(5, "fifty");
+        TENS.put(6, "sixty");
+        TENS.put(7, "seventy");
+        TENS.put(8, "eighty");
+        TENS.put(9, "ninety");
     }
 
     @Test
@@ -42,12 +52,15 @@ public class NumbersToWordsTests {
         if(ones(number) != 0){
             ret = "-" + ONES.get(ones(number));
         }
+        if(tens(number) != 0){
+            ret = TENS.get(tens(number)) + ret;
+        }
 
-        return (tens(number)==2 ? "twenty" : "thirty") + ret;
+        return ret;
     }
 
     private int tens(int number) {
-        return (number % 100)/10;
+        return (number / 10) % 10;
     }
 
     private int ones(int number) {
@@ -67,7 +80,13 @@ public class NumbersToWordsTests {
                 {27, "twenty-seven"},
                 {28, "twenty-eight"},
                 {29, "twenty-nine"},
-                {30, "thirty"}
+                {30, "thirty"},
+                {40, "forty"},
+                {50, "fifty"},
+                {60, "sixty"},
+                {70, "seventy"},
+                {80, "eighty"},
+                {90, "ninety"}
         };
     }
 
