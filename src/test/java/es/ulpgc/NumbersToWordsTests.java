@@ -73,7 +73,12 @@ public class NumbersToWordsTests {
                 {20021, "twenty thousand twenty-one"},
                 {20121, "twenty thousand one hundred twenty-one"},
                 {25121, "twenty-five thousand one hundred twenty-one"},
-                {100000, "one hundred thousand"}
+                {100000, "one hundred thousand"},
+                {1000000, "one million"},
+                {100000000, "one hundred million"},
+                {1000000000, "one thousand million"},
+                {1100000000, "one thousand one hundred million"}
+
         };
     }
 

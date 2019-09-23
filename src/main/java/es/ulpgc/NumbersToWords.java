@@ -33,11 +33,13 @@ public class NumbersToWords {
     public static String toWord(int number) {
         String ret = "";
         int level = 0;
-        while (level < 2) {
+        while (level < 3) {
             if(level == 0) {
                 ret = threeNumbersToWord(number%1000) + ret;
             }else if(level == 1 && (number%1000000)/1000 != 0){
                 ret = threeNumbersToWord((number%1000000)/1000) + " thousand " + ret;
+            }else if(level == 2 && number/1000000 != 0){
+                ret = toWord(number/1000000) + " million " + ret;
             }
             level++;
         }
