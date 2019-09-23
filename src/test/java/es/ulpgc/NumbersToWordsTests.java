@@ -56,7 +56,7 @@ public class NumbersToWordsTests {
             ret = TENS.get(tens(number)) + ret;
         }
         if(hundreds(number) != 0){
-            ret = "one hundred " + ret;
+            ret = ONES.get(hundreds(number)) + " hundred " + ret;
         }
 
         if(ret.charAt(0) == ' ') ret = ret.substring(1, ret.length());
@@ -96,7 +96,15 @@ public class NumbersToWordsTests {
                 {70, "seventy"},
                 {80, "eighty"},
                 {90, "ninety"},
-                {100, "one hundred"}
+                {100, "one hundred"},
+                {200, "two hundred"},
+                {300, "three hundred"},
+                {400, "four hundred"},
+                {500, "five hundred"},
+                {600, "six hundred"},
+                {700, "seven hundred"},
+                {800, "eight hundred"},
+                {900, "nine hundred"}
         };
     }
 
