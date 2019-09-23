@@ -24,6 +24,15 @@ public class NumbersToWordsTests {
     @Parameterized.Parameters
     public static Object[][] cases() {
         return new Object[][]{
+                {1, "one"},
+                {2, "two"},
+                {3, "three"},
+                {4, "four"},
+                {5, "five"},
+                {6, "six"},
+                {7, "seven"},
+                {8, "eight"},
+                {9, "nine"},
                 {20, "twenty"},
                 {21, "twenty-one"},
                 {22, "twenty-two"},
@@ -54,7 +63,12 @@ public class NumbersToWordsTests {
                 {700, "seven hundred"},
                 {800, "eight hundred"},
                 {900, "nine hundred"},
-                {1000, "one thousand"}
+                {1000, "one thousand"},
+                {1021, "one thousand twenty-one"},
+                {1100, "one thousand one hundred"},
+                {1121, "one thousand one hundred twenty-one"},
+                {2000, "two thousand"},
+                {20000, "twenty thousand"}
         };
     }
 

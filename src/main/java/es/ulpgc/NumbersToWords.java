@@ -32,26 +32,38 @@ public class NumbersToWords {
 
     public static String toWord(int number) {
         String ret = "";
-        if(ones(number) != 0){
-            ret = "-" + ONES.get(ones(number));
-        }
-        if(tens(number) != 0){
-            ret = TENS.get(tens(number)) + ret;
-        }
-        if(hundreds(number) != 0){
-            ret = ONES.get(hundreds(number)) + " hundred " + ret;
-        }
-        if(thousands(number) != 0){
-            ret = ONES.get(thousands(number)) + " thousand " + ret;
+        int level = 0;
+        while (level < 2) {
+            if(level == 0) {
+                ret = threeNumbersToWord(number%1000) + ret;
+            }else if(level == 1 && (number%1000000)/1000 != 0){
+                ret = threeNumbersToWord((number%1000000)/1000) + " thousand " + ret;
+            }
+            level++;
         }
 
-        if(ret.charAt(0) == ' ') ret = ret.substring(1, ret.length());
-        if(ret.charAt(ret.length() - 1) == ' ') ret = ret.substring(0, ret.length() - 1);
+        if(ret.charAt(0) == ' ' || ret.charAt(0) == '-') ret = ret.substring(1, ret.length());
+        if(ret.charAt(ret.length() - 1) == ' ' || ret.charAt(ret.length() - 1) == '-') ret = ret.substring(0, ret.length() - 1);
         return ret;
     }
 
-    private static int thousands(int number) {
-        return (number / 1000) % 10;
+    public static String threeNumbersToWord(int number) {
+        String ret = "";
+        if(number != 0) {
+            if (ones(number) != 0) {
+                ret = "-" + ONES.get(ones(number));
+            }
+            if (tens(number) != 0) {
+                ret = TENS.get(tens(number)) + ret;
+            }
+            if (hundreds(number) != 0) {
+                ret = ONES.get(hundreds(number)) + " hundred " + ret;
+            }
+
+            /*if (ret.charAt(0) == ' ') ret = ret.substring(1, ret.length());
+            if (ret.charAt(ret.length() - 1) == ' ') ret = ret.substring(0, ret.length() - 1);*/
+        }
+        return ret;
     }
 
     private static int hundreds(int number) {
