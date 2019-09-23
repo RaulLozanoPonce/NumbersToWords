@@ -55,8 +55,17 @@ public class NumbersToWordsTests {
         if(tens(number) != 0){
             ret = TENS.get(tens(number)) + ret;
         }
+        if(hundreds(number) != 0){
+            ret = "one hundred " + ret;
+        }
 
+        if(ret.charAt(0) == ' ') ret = ret.substring(1, ret.length());
+        if(ret.charAt(ret.length() - 1) == ' ') ret = ret.substring(0, ret.length() - 1);
         return ret;
+    }
+
+    private int hundreds(int number) {
+        return (number / 100) % 10;
     }
 
     private int tens(int number) {
@@ -86,7 +95,8 @@ public class NumbersToWordsTests {
                 {60, "sixty"},
                 {70, "seventy"},
                 {80, "eighty"},
-                {90, "ninety"}
+                {90, "ninety"},
+                {100, "one hundred"}
         };
     }
 
