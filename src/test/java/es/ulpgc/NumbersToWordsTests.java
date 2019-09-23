@@ -23,6 +23,13 @@ public class NumbersToWordsTests {
         ONES.put(0, "");
         ONES.put(1, "one");
         ONES.put(2, "two");
+        ONES.put(3, "three");
+        ONES.put(4, "four");
+        ONES.put(5, "five");
+        ONES.put(6, "six");
+        ONES.put(7, "seven");
+        ONES.put(8, "eight");
+        ONES.put(9, "nine");
     }
 
     @Test
@@ -48,7 +55,14 @@ public class NumbersToWordsTests {
         return new Object[][]{
                 {20, "twenty"},
                 {21, "twenty-one"},
-                {22, "twenty-two"}
+                {22, "twenty-two"},
+                {23, "twenty-three"},
+                {24, "twenty-four"},
+                {25, "twenty-five"},
+                {26, "twenty-six"},
+                {27, "twenty-seven"},
+                {28, "twenty-eight"},
+                {29, "twenty-nine"}
         };
     }
 
