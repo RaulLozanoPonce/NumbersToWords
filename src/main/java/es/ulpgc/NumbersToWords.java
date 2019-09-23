@@ -6,6 +6,7 @@ import java.util.Map;
 public class NumbersToWords {
     private static Map<Integer, String> ONES;
     private static Map<Integer, String> TENS;
+    private static Map<Integer, String> SPECIAL;
 
     static {
         ONES = new HashMap<Integer, String>();
@@ -19,6 +20,17 @@ public class NumbersToWords {
         ONES.put(7, "seven");
         ONES.put(8, "eight");
         ONES.put(9, "nine");
+        SPECIAL = new HashMap<Integer, String>();
+        SPECIAL.put(10, "ten");
+        SPECIAL.put(11, "eleven");
+        SPECIAL.put(12, "twelve");
+        SPECIAL.put(13, "thirteen");
+        SPECIAL.put(14, "fourteen");
+        SPECIAL.put(15, "fifteen");
+        SPECIAL.put(16, "sixteen");
+        SPECIAL.put(17, "seventeen");
+        SPECIAL.put(18, "eighteen");
+        SPECIAL.put(19, "nineteen");
         TENS = new HashMap<Integer, String>();
         TENS.put(2, "twenty");
         TENS.put(3, "thirty");
@@ -43,28 +55,28 @@ public class NumbersToWords {
             }
             level++;
         }
-
-        if(ret.charAt(0) == ' ' || ret.charAt(0) == '-') ret = ret.substring(1, ret.length());
-        if(ret.charAt(ret.length() - 1) == ' ' || ret.charAt(ret.length() - 1) == '-') ret = ret.substring(0, ret.length() - 1);
-        return ret;
+        return cleanNumber(ret);
     }
 
     public static String threeNumbersToWord(int number) {
+        if(number == 0) return "";
         String ret = "";
-        if(number != 0) {
-            if (ones(number) != 0) {
-                ret = "-" + ONES.get(ones(number));
-            }
-            if (tens(number) != 0) {
-                ret = TENS.get(tens(number)) + ret;
-            }
-            if (hundreds(number) != 0) {
-                ret = ONES.get(hundreds(number)) + " hundred " + ret;
-            }
-            if(ret.charAt(0) == ' ' || ret.charAt(0) == '-') ret = ret.substring(1, ret.length());
-            if(ret.charAt(ret.length() - 1) == ' ' || ret.charAt(ret.length() - 1) == '-') ret = ret.substring(0, ret.length() - 1);
+        if (ones(number) != 0 && tens(number) != 1) {
+            ret = "-" + ONES.get(ones(number));
         }
-        return ret;
+        if (tens(number) != 0) {
+            ret = (tens(number) == 1 ? SPECIAL.get(number) : TENS.get(tens(number))) + ret;
+        }
+        if (hundreds(number) != 0) {
+            ret = ONES.get(hundreds(number)) + " hundred " + ret;
+        }
+        return cleanNumber(ret);
+    }
+
+    private static String cleanNumber(String number){
+        if(number.charAt(0) == ' ' || number.charAt(0) == '-') number = number.substring(1, number.length());
+        if(number.charAt(number.length() - 1) == ' ' || number.charAt(number.length() - 1) == '-') number = number.substring(0, number.length() - 1);
+        return number;
     }
 
     private static int hundreds(int number) {
