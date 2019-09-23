@@ -43,7 +43,11 @@ public class NumbersToWordsTests {
             ret = "-" + ONES.get(ones(number));
         }
 
-        return "twenty" + ret;
+        return (tens(number)==2 ? "twenty" : "thirty") + ret;
+    }
+
+    private int tens(int number) {
+        return (number % 100)/10;
     }
 
     private int ones(int number) {
@@ -62,7 +66,8 @@ public class NumbersToWordsTests {
                 {26, "twenty-six"},
                 {27, "twenty-seven"},
                 {28, "twenty-eight"},
-                {29, "twenty-nine"}
+                {29, "twenty-nine"},
+                {30, "thirty"}
         };
     }
 
