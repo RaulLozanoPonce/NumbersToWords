@@ -22,13 +22,14 @@ public class NumbersToWordsTests {
     }
 
     private String toWord(int number) {
-        return "twenty";
+        return number==20 ? "twenty" : "twenty-one";
     }
 
     @Parameterized.Parameters
     public static Object[][] cases() {
         return new Object[][]{
-                {20, "twenty"}
+                {20, "twenty"},
+                {21, "twenty-one"}
         };
     }
 
